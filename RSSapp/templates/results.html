@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title_block %}
+  RSS feed
+{% endblock %}
+
+{% block body_block %}
+  <h3>RSS feed for the selected sites;</h3>
+  <br>
+  <div class="text-left">
+    {% for item in data %}
+      <h4><b>{{ item.0 }}</b></h4>
+      <hr>
+      {% if item.1.entries|length %}
+        <ul>
+          {% for post in item.1.entries %}
+          <li>{{ post.title }}<br>
+            <a class="text-danger" href="{{ post.link }}">Read/watch post...</a></li>
+          {% endfor %}
+        </ul>
+      {% elif "formed" in item.1 %}
+        {{ item.1 }}
+        <br>
+        <br>
+      {% else %}
+        <p>No RSS feeds found for the given url</p>
+      {% endif %}
+      <br>
+    {% endfor %}
+  </div>
+
+{% endblock %}
+
+{% block footer_block %}
+  <p class="text-center">Today: {{ date }}</p>
+{% endblock %}

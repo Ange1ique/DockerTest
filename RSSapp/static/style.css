@@ -1,0 +1,21 @@
+html, body {height:100%;}
+
+* {font-family: 'Baloo Bhai 2', cursive;}
+
+#banner {background-color: #ff8800;
+        min-height: 300px;
+        height: 300px;}
+
+#promo {color: white;}
+
+#title {font-size: 425%;
+        font-weight: bold;}
+
+#form {
+        max-width: 750px;
+        margin: 0 auto;
+}
+
+input[type="checkbox"]:checked { /* change "blue" browser to orange */
+        filter: hue-rotate(160deg) brightness(1.5);
+      }

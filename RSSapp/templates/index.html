@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title_block %}
+  RSS feed
+{% endblock %}
+
+{% block body_block %}
+  <h3>Get the RSS feed for the following sites;</h3>
+  <br>
+  {% if error %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+  {% endif %}
+
+  <form class="text-left" action="{% url 'RSSapp:index' %}" method="post">
+    {% csrf_token %}
+
+    <label class="mt-3 mb-0">Enter a new url:</label>
+    {{ form.urlNew }}
+
+    <label class="mt-4 mb-0">And/ or select some of these:</label>
+    <hr class="mt-0">
+    {% for url in form.urlsCheckboxes %}
+      <div class="form-check">
+        {{ url }}
+      </div>
+    {% endfor %}
+
+    <br>
+    <button type="submit" class="btn btn-danger btn-block" name="button">Get feed</button>
+  </form>
+
+{% endblock %}
+
+{% block footer_block %}
+  <p class="text-center">Today: {{ date }}</p>
+{% endblock %}
